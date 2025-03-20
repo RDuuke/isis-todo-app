@@ -11,13 +11,17 @@ export class TodoMockService implements TodoRepository {
   private id_counter = 1;
 
  
-  create(todoItem: Partial<TodoItem>): Observable<TodoItem> {
-    const newTodo: TodoItem = {
-      id: this.id_counter++,
-      text: todoItem.text || '',
-      completed: todoItem.completed || false
-    };
-    this.todos.push(newTodo);
-    return of(newTodo);
-  }
+    create(todoItem: Partial<TodoItem>): Observable<TodoItem> {
+        const newTodo: TodoItem = {
+        id: this.id_counter++,
+        text: todoItem.text || '',
+        completed: todoItem.completed || false
+        };
+        this.todos.push(newTodo);
+        return of(newTodo);
+    }
+
+    get(): Observable<TodoItem[]> {
+        return of(this.todos);
+    }
 }

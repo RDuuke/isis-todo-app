@@ -13,4 +13,8 @@ export class TodoHttpService implements TodoRepository {
     create(todoItem: Partial<TodoItem>): Observable<TodoItem> {
         return this.http.post<TodoItem>('/api/todos', todoItem);
     }
+
+    get(): Observable<TodoItem[]> {
+        return this.http.get<TodoItem[]>('/api/todos');
+    }
 }
