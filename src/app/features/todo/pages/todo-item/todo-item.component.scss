@@ -1,0 +1,21 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  
+    input { margin-right: 0.5rem; }
+  
+    span { flex: 1; }
+  
+    span.completed { text-decoration: line-through; color: #999; }
+  
+    .delete-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: #dc3545;
+      cursor: pointer;
+    }
+  }
+  

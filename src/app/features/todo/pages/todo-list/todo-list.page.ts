@@ -3,11 +3,12 @@ import { TodoItem } from "../../../../core/domain/todo/todo-item.model";
 import { CreateTodoUseCase } from "../../../../core/application/todo/create-todo.usecase";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { TodoItemComponent } from "../todo-item/todo-item.component";
 
 @Component({
     selector: 'app-todo-list',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, TodoItemComponent],
     templateUrl: './todo-list.page.html',
     styleUrls: ['./todo-list.page.scss']
 })
