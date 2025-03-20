@@ -1,0 +1,15 @@
+<div class="todo-page-container">
+    <h1>Lista de Tareas</h1>
+  
+    <div class="new-todo-section">
+      <input
+        type="text"
+        placeholder="Escribe una nueva tarea..."
+        [(ngModel)]="newTodoText"
+        (keyup.enter)="createTodo()"
+      />
+      <button (click)="createTodo()">Agregar</button>
+    </div>
+  
+</div>
+  
