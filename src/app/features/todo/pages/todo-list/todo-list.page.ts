@@ -4,6 +4,7 @@ import { CreateTodoUseCase } from "../../../../core/application/todo/create-todo
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { TodoItemComponent } from "../todo-item/todo-item.component";
+import { DeleteTodoUseCase } from "../../../../core/application/todo/delete-todo.usecase";
 
 @Component({
     selector: 'app-todo-list',
@@ -18,10 +19,11 @@ export class TodoListPage {
     newTodoText: string = '';
 
     constructor(
-        private createTodoUseCase: CreateTodoUseCase
+        private createTodoUseCase: CreateTodoUseCase,
+        private deleteTodoUseCase: DeleteTodoUseCase
     ) {}
 
-    createTodo(): void {
+    create(): void {
         if (!this.newTodoText.trim()) return;
         this.createTodoUseCase.execute(this.newTodoText.trim()).subscribe({
             next: (newTodo) => {
@@ -31,5 +33,12 @@ export class TodoListPage {
           error: (err) => console.error('Error al crear TODO:', err)
         });
     }
+
+    delete(todo: TodoItem): void {
+        this.deleteTodoUseCase.execute(todo.id).subscribe({
+          next: () => this.todos = this.todos.filter(t => t.id !== todo.id),
+          error: err => console.error('Error eliminando TODO:', err)
+        });
+      }
     
 }
