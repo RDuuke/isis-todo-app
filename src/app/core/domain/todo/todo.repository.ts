@@ -8,4 +8,7 @@ export interface TodoRepository {
     create(todoItem: Partial<TodoItem>): Observable<TodoItem>;
 
     delete(id: number): Observable<any>;
+
+    update(todo: TodoItem): Observable<TodoItem>;
+
 }
