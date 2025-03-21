@@ -13,13 +13,13 @@ import { TodoItem } from "../../../../core/domain/todo/todo-item.model";
 export class TodoItemComponent {
     @Input() todo!: TodoItem;
     @Output() delete = new EventEmitter<TodoItem>();
-    @Output() toggle = new EventEmitter<TodoItem>();
+    @Output() update = new EventEmitter<TodoItem>();
 
     onDelete(): void {
         this.delete.emit(this.todo);
     }
 
     onToggle(): void {
-        this.toggle.emit({ ...this.todo, completed: !this.todo.completed });
+        this.update.emit({ ...this.todo, completed: !this.todo.completed });
     }
 }
