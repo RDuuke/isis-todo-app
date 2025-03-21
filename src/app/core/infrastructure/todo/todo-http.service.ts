@@ -21,5 +21,9 @@ export class TodoHttpService implements TodoRepository {
     delete(id: number): Observable<any> {
         return this.http.delete(`/api/todos/${id}`);
     }
+    
+    update(todo: TodoItem): Observable<TodoItem> {
+        return this.http.put<TodoItem>(`/api/todos/${todo.id}`, todo);
+    }
       
 }

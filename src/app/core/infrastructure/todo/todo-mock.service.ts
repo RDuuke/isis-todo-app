@@ -29,4 +29,10 @@ export class TodoMockService implements TodoRepository {
       this.todos = this.todos.filter(t => t.id !== id);
       return of({ success: true });
     }
+
+    update(todo: TodoItem): Observable<TodoItem> {
+      const idx = this.todos.findIndex(t => t.id === todo.id);
+      if (idx > -1) this.todos[idx] = todo;
+      return of(todo);
+    }
 }
