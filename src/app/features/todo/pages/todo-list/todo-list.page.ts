@@ -6,6 +6,8 @@ import { CommonModule } from "@angular/common";
 import { TodoItemComponent } from "../todo-item/todo-item.component";
 import { DeleteTodoUseCase } from "../../../../core/application/todo/delete-todo.usecase";
 import { UpdateTodoUseCase } from "../../../../core/application/todo/update-todo.usecase";
+import { GetAllTodosUseCase } from "../../../../core/application/todo/get-all-todos.usecase";
+import { TodoFilter } from "../../../../core/domain/todo/todo-filter.enum";
 
 @Component({
     selector: 'app-todo-list',
@@ -14,22 +16,34 @@ import { UpdateTodoUseCase } from "../../../../core/application/todo/update-todo
     templateUrl: './todo-list.page.html',
     styleUrls: ['./todo-list.page.scss']
 })
-export class TodoListPage {
+export class TodoListPage implements OnInit {
 
     todos: TodoItem[] = [];
     newTodoText: string = '';
+    selectedFilter = TodoFilter.All;
+    filterOptions = Object.values(TodoFilter);
 
     constructor(
+        private getTodoListUseCase: GetAllTodosUseCase,
         private createTodoUseCase: CreateTodoUseCase,
         private deleteTodoUseCase: DeleteTodoUseCase, 
         private updateTodoUseCase: UpdateTodoUseCase
     ) {}
 
+    ngOnInit() {
+        this.loadTodos();
+    }
+
+    loadTodos() {
+        this.getTodoListUseCase.execute().subscribe(items => (this.todos = items));
+    }
+
     create(): void {
-        if (!this.newTodoText.trim()) return;
+        const text = this.newTodoText.trim();
+        if (!text) return;
         this.createTodoUseCase.execute(this.newTodoText.trim()).subscribe({
-            next: (newTodo) => {
-                this.todos.push(newTodo);
+            next: () => {
+                this.loadTodos();
                 this.newTodoText = '';
           },
           error: (err) => console.error('Error al crear TODO:', err)
@@ -49,4 +63,11 @@ export class TodoListPage {
           if (i > -1) this.todos[i] = updated;
         });
     }
+
+    get filteredTodos(): TodoItem[] {
+        if (this.selectedFilter === TodoFilter.All) return this.todos;
+        const showCompleted = this.selectedFilter === TodoFilter.Completed;
+        return this.todos.filter(todo => todo.completed === showCompleted);
+    }
+    
 }

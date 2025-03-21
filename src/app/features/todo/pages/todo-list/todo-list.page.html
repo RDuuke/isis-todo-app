@@ -1,24 +1,19 @@
-<div class="todo-page-container">
-    <h1>Lista de Tareas</h1>
-  
-    <div class="new-todo-section">
-      <input
-        type="text"
-        placeholder="Escribe una nueva tarea..."
-        [(ngModel)]="newTodoText"
-        (keyup.enter)="create()"
-      />
-      <button (click)="create()">Agregar</button>
-    </div>
-    <ul class="todo-list">
-        <li *ngFor="let todo of todos">
-          <app-todo-item
-            [todo]="todo"
-            (delete)="delete($event)"
-            (update)="update($event)"
-          ></app-todo-item>
-        </li>
-    </ul>
-  
+<div class="todo-container">
+	<header class="todo-header">To do List</header>
+
+	<div class="controls">
+		<select [(ngModel)]="selectedFilter">
+			<option *ngFor="let opt of filterOptions" [value]="opt">{{ opt }}</option>
+		</select>
+
+		<div class="add-box">
+			<input type="text" [(ngModel)]="newTodoText" placeholder="Placeholder" (keyup.enter)="create()" />
+		</div>
+	</div>
+
+	<section class="todo-list">
+		<h2 class="list-title">{{ selectedFilter }}</h2>
+		<app-todo-item *ngFor="let todo of filteredTodos" [todo]="todo" (update)="update($event)"
+			(delete)="delete($event)"></app-todo-item>
+	</section>
 </div>
-  
