@@ -24,4 +24,9 @@ export class TodoMockService implements TodoRepository {
     get(): Observable<TodoItem[]> {
         return of(this.todos);
     }
+
+    delete(id: number): Observable<any> {
+      this.todos = this.todos.filter(t => t.id !== id);
+      return of({ success: true });
+    }
 }
