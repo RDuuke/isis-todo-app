@@ -8,11 +8,12 @@ import { DeleteTodoUseCase } from "../../../../core/application/todo/delete-todo
 import { UpdateTodoUseCase } from "../../../../core/application/todo/update-todo.usecase";
 import { GetAllTodosUseCase } from "../../../../core/application/todo/get-all-todos.usecase";
 import { TodoFilter } from "../../../../core/domain/todo/todo-filter.enum";
+import { ThemeToggleComponent } from "../../../../../shared/components/theme-toggle/theme-toggle.component";
 
 @Component({
     selector: 'app-todo-list',
     standalone: true,
-    imports: [CommonModule, FormsModule, TodoItemComponent],
+    imports: [CommonModule, FormsModule, TodoItemComponent, ThemeToggleComponent],
     templateUrl: './todo-list.page.html',
     styleUrls: ['./todo-list.page.scss']
 })
