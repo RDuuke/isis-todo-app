@@ -1,7 +1,7 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://localhost:3000/api/todos',
-    useMock: true,
+    production: true,
+    apiUrl: 'https://vb73e5nvtc.us-east-1.awsapprunner.com:3000/api/todos',
+    useMock: false,
     apiKey: 'mi-secreta-api-key'
   };
   
