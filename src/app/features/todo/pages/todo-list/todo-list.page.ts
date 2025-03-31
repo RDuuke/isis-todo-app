@@ -23,6 +23,7 @@ export class TodoListPage implements OnInit {
     newTodoText: string = '';
     selectedFilter = TodoFilter.All;
     filterOptions = Object.values(TodoFilter);
+    loading: boolean = true;
 
     constructor(
         private getTodoListUseCase: GetAllTodosUseCase,
@@ -36,7 +37,11 @@ export class TodoListPage implements OnInit {
     }
 
     loadTodos() {
-        this.getTodoListUseCase.execute().subscribe(items => (this.todos = items));
+        this.loading = true;
+        this.getTodoListUseCase.execute().subscribe(items => {
+            this.todos = items;
+            this.loading = false;
+        });
     }
 
     create(): void {

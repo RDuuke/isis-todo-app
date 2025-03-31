@@ -7,10 +7,12 @@ import { TodoHttpService } from './core/infrastructure/todo/todo-http.service';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { apiKeyInterceptor } from './core/infrastructure/interceptors/api-key.interceptor';
 import { environment } from '../environments/environment';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(), 
     provideHttpClient(withInterceptors([apiKeyInterceptor])),
     { provide: TODO_REPOSITORY_TOKEN, useClass: environment.useMock ? TodoMockService : TodoHttpService },
   ]

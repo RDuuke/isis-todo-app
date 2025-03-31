@@ -1,4 +1,4 @@
-<div class="todo-item">
+<div class="todo-item" @fadeInOut>
     <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" />
     <span [class.completed]="todo.completed">{{ todo.text }}</span>
     <button class="delete-btn" (click)="onDelete()">✕</button>

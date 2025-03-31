@@ -14,7 +14,13 @@
 
 	<section class="todo-list">
 		<h2 class="list-title">{{ selectedFilter }}</h2>
-		<app-todo-item *ngFor="let todo of filteredTodos" [todo]="todo" (update)="update($event)"
-			(delete)="delete($event)"></app-todo-item>
+		<ng-container *ngIf="loading; else showTodos">
+			<div class="skeleton-item" ngFor="let n of [1, 2, 3]"></div>
+		</ng-container>
+
+		<ng-template #showTodos>
+			<app-todo-item *ngFor="let todo of filteredTodos" [todo]="todo" (update)="update($event)"
+				(delete)="delete($event)"></app-todo-item>
+		</ng-template>
 	</section>
 </div>

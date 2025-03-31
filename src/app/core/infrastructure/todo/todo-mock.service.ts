@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { TodoRepository } from '../../domain/todo/todo.repository';
 import { TodoItem } from '../../domain/todo/todo-item.model';
 
@@ -22,7 +22,7 @@ export class TodoMockService implements TodoRepository {
     }
 
     get(): Observable<TodoItem[]> {
-        return of(this.todos);
+        return of(this.todos).pipe(delay(1000)); // Simulate network delay
     }
 
     delete(id: number): Observable<any> {
