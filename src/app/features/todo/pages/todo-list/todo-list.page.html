@@ -8,7 +8,9 @@
 		</select>
 
 		<div class="add-box">
-			<input type="text" [(ngModel)]="newTodoText" placeholder="Placeholder" (keyup.enter)="create()" />
+			<input type="text" class="add-text" [(ngModel)]="newTodoText" placeholder="Tarea"/>
+			<input type="date" class="add-text" [(ngModel)]="newTodoDate" placeholder="Fecha"/>
+			<button (click)="create()" class="add-button">+</button>
 		</div>
 	</div>
 

@@ -15,10 +15,12 @@ export class TodoMockService implements TodoRepository {
         const newTodo: TodoItem = {
         id: this.id_counter++,
         text: todoItem.text || '',
-        completed: todoItem.completed || false
+        completed: todoItem.completed || false,
+        dueDate: todoItem.dueDate || undefined
         };
+        console.log('Creating todo:', newTodo);
         this.todos.push(newTodo);
-        return of(newTodo);
+        return of(newTodo).pipe(delay(500)); 
     }
 
     get(): Observable<TodoItem[]> {

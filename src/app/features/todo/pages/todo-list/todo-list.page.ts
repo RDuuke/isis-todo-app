@@ -21,6 +21,7 @@ export class TodoListPage implements OnInit {
 
     todos: TodoItem[] = [];
     newTodoText: string = '';
+    newTodoDate: string = '';
     selectedFilter = TodoFilter.All;
     filterOptions = Object.values(TodoFilter);
     loading: boolean = true;
@@ -45,14 +46,20 @@ export class TodoListPage implements OnInit {
     }
 
     create(): void {
-        const text = this.newTodoText.trim();
-        if (!text) return;
-        this.createTodoUseCase.execute(this.newTodoText.trim()).subscribe({
-            next: () => {
-                this.loadTodos();
-                this.newTodoText = '';
-          },
-          error: (err) => console.error('Error al crear TODO:', err)
+        const payload = {
+            text: this.newTodoText,
+            completed: false,
+            dueDate: this.newTodoDate || undefined
+        };
+        console.log('Payload:', payload);
+        if (!payload.text) return;
+        this.createTodoUseCase.execute(payload).then(todo => {
+            this.todos.push(todo);
+            this.newTodoText = '';
+            this.newTodoDate = '';
+
+        }).catch(err => {
+            console.error('Error creando TODO:', err);
         });
     }
 

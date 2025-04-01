@@ -21,3 +21,41 @@ body {
     color: var(--card-text);
     transition: background-color .3s, color .3s;
 }
+
+.add-box {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1rem;
+
+    input,
+    button {
+        height: 2.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        padding: 0 0.75rem;
+        background-color: #f7faf9;
+    }
+
+    .add-text {
+        flex: 2;
+    }
+
+    .add-date {
+        flex: 1.2;
+    }
+
+    .add-button {
+        flex: 0.4;
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+
+    .add-button:hover {
+        background-color: #218838;
+    }
+}
