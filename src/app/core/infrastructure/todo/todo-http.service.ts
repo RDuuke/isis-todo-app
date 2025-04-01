@@ -14,8 +14,8 @@ export class TodoHttpService implements TodoRepository {
 
     constructor(private http: HttpClient) {}
 
-    create(todoItem: Partial<TodoItem>): Observable<TodoItem> {
-        return this.http.post<TodoItem>(this.API_URL, todoItem);
+    create(todo: Partial<TodoItem>): Observable<TodoItem> {
+        return this.http.post<TodoItem>(this.API_URL, todo);
     }
 
     get(): Observable<TodoItem[]> {

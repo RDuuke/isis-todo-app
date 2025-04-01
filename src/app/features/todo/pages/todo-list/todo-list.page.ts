@@ -51,7 +51,6 @@ export class TodoListPage implements OnInit {
             completed: false,
             dueDate: this.newTodoDate || undefined
         };
-        console.log('Payload:', payload);
         if (!payload.text) return;
         this.createTodoUseCase.execute(payload).then(todo => {
             this.todos.push(todo);

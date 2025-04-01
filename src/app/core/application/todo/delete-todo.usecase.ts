@@ -8,9 +8,9 @@ import { Observable } from "rxjs";
 })
 export class DeleteTodoUseCase {
 
-    constructor(@Inject(TODO_REPOSITORY_TOKEN) private repo: TodoRepository) {}
+    constructor(@Inject(TODO_REPOSITORY_TOKEN) private repository: TodoRepository) {}
 
     execute(id: number): Observable<any> {
-        return this.repo.delete(id);
+        return this.repository.delete(id);
     }
 }
