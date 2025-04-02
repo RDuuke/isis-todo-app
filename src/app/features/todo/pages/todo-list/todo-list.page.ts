@@ -49,7 +49,8 @@ export class TodoListPage implements OnInit {
         const payload = {
             text: this.newTodoText,
             completed: false,
-            dueDate: this.newTodoDate || undefined
+            dueDate: this.newTodoDate || undefined,
+            important: false
         };
         if (!payload.text) return;
         this.createTodoUseCase.execute(payload).then(todo => {
@@ -77,9 +78,17 @@ export class TodoListPage implements OnInit {
     }
 
     get filteredTodos(): TodoItem[] {
-        if (this.selectedFilter === TodoFilter.All) return this.todos;
-        const showCompleted = this.selectedFilter === TodoFilter.Completed;
-        return this.todos.filter(todo => todo.completed === showCompleted);
-    }
+        switch (this.selectedFilter) {
+          case TodoFilter.Completed:
+            return this.todos.filter(t => t.completed);
+          case TodoFilter.Active:
+            return this.todos.filter(t => !t.completed);
+          case TodoFilter.Important:
+            return this.todos.filter(t => t.important);
+          default:
+            return this.todos;
+        }
+      }
+      
     
 }

@@ -34,6 +34,7 @@ export class TodoMockService implements TodoRepository {
     update(todo: TodoItem): Observable<TodoItem> {
       const idx = this.todos.findIndex(t => t.id === todo.id);
       if (idx > -1) this.todos[idx] = todo;
+      console.log("Updated todo:", todo);
       return of(todo);
     }
 }

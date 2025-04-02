@@ -32,7 +32,11 @@ export class TodoItemComponent {
         this.delete.emit(this.todo);
     }
 
-    onToggle(): void {
+    onUpdate(): void {
         this.update.emit({ ...this.todo, completed: !this.todo.completed });
+    }
+
+    onImportant(): void {
+        this.update.emit({ ...this.todo, important: !this.todo.important });
     }
 }

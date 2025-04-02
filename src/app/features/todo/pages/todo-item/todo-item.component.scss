@@ -20,4 +20,20 @@
 	.delete-btn {
 		color: #e74c3c;
 	}
-}
+
+	&.important {
+		border-left: 4px solid gold;
+		background-color: #fffce8;
+	}
+	
+	.important-btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-size: 20px;
+		margin-right: 8px;
+		color: gold;
+		line-height: 1;
+		padding: 0;
+	}
+}	

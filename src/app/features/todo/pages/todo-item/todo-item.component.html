@@ -1,5 +1,8 @@
 <div class="todo-item" @fadeInOut>
-    <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" />
+    <button class="important-btn" (click)="onImportant()">
+        {{ todo.important ? '★' : '☆' }}
+    </button>
+    <input type="checkbox" [checked]="todo.completed" (change)="onUpdate()" />
     <span [class.completed]="todo.completed">{{ todo.text }}</span>
     <span *ngIf="todo.dueDate" class="due-date">
         📅 {{ todo.dueDate | date: 'longDate' }}

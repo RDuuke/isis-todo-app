@@ -3,4 +3,5 @@ export interface TodoItem {
     text: string;
     completed: boolean;
     dueDate?: string;
+    important?: boolean;
 }
